@@ -5,24 +5,24 @@
     android:id="@+id/navigator"
     app:startDestination="@id/mainFragment">
 
+    <!-- MainFragment where you enter your name -->
     <fragment
         android:id="@+id/mainFragment"
+        android:name="com.example.myapplication.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_mainFragment_to_click_Page"
-            app:destination="@id/click_Page" />
-    </fragment>
-        <action
-            android:id="@+id/First_Page"
-            app:destination="@id/mainFragment" />
-    <fragment
-        android:id="@+id/click_Page"
-        android:label="fragment_click"
-        tools:layout="@layout/fragment_click"/>
-        <action
-            android:id="@+id/Second_Page"
-            app:destination="@+id/click_Page"/>
 
+        <action
+            android:id="@+id/action_mainFragment_to_clickPage"
+            app:destination="@id/clickPage" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/clickPage"
+        android:name="com.example.myapplication.fragments.MainFragment"
+        android:label="fragment_click"
+        tools:layout="@layout/fragment_click">
+    </fragment>
 
 </navigation>

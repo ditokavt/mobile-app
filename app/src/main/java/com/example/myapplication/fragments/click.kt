@@ -1,29 +1,24 @@
 package com.example.myapplication.fragments
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
+import com.example.myapplication.databinding.FragmentClickBinding
 
-class click : AppCompatActivity() {
+class ClickActivity : AppCompatActivity() {
 
-    private lateinit var clickButton: Button
-    private lateinit var numberTextView: TextView
+    private lateinit var binding: FragmentClickBinding
     private var count: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_click)
+        binding = FragmentClickBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        clickButton = findViewById(R.id.clickButton)
-        numberTextView = findViewById(R.id.numberTextView)
+        binding.numberTextView.text = count.toString()
 
-        numberTextView.text = count.toString()
-
-        clickButton.setOnClickListener {
+        binding.clickButton.setOnClickListener {
             count++
-            numberTextView.text = count.toString()
+            binding.numberTextView.text = count.toString()
         }
     }
 }

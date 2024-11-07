@@ -9,16 +9,12 @@ import android.widget.TextView
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.myapplication.R
-import com.example.myapplication.databinding.fragment_main  // Correct ViewBinding for this fragment
+import com.example.myapplication.databinding.FragmentMainBinding  // Correct ViewBinding for this fragment
 
-class main : Fragment(R.layout.fragment_main) {
+class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private lateinit var binding: fragment_main  // ViewBinding instance for fragment
-    private lateinit var nameEditText: EditText
-    private lateinit var nameTextView: TextView
-    private lateinit var okButton: Button
-    private lateinit var nextButton: Button
+    private lateinit var binding: FragmentMainBinding  // ViewBinding instance for fragment
+    private var count: Int = 0
 
     // Inflate the fragment layout and initialize ViewBinding
     override fun onCreateView(
@@ -27,7 +23,7 @@ class main : Fragment(R.layout.fragment_main) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout using ViewBinding and return the root view
-        binding = fragment_main.inflate(inflater, container, false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,22 +32,23 @@ class main : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize views using ViewBinding
-        nameEditText = binding.nameEditText
-        nameTextView = binding.nameTextView
-        okButton = binding.okButton
-        nextButton = binding.nextButton
+        val nameEditText = binding.editText
+        val nameTextView = binding.textView1
+        val okButton = binding.Btt2
+        val nextButton = binding.Btt1
 
         // Set up OK button to display input in TextView
         okButton.setOnClickListener {
             val name = nameEditText.text.toString()
-            nameTextView.text = name
+            nameTextView.text = "Your name is: $name"
         }
 
-        // Set up Next button to navigate to another fragment (or activity if needed)
+
         nextButton.setOnClickListener {
-            // Example: Use navigation to go to another fragment
-            Navigation.findNavController(it)
-                .navigate(fragment_click.actionMainFragmentToSecondFragment())
+            val number = nameEditText.text.toString()
+            val action = mainFragment.actionMainFragmentToSecondFragment(number)
+            Navigation.findNavController(it).navigate(action)
+
         }
     }
 }
